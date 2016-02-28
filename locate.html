@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<body onload="getLocation()">
+
+<script>
+	function getLocation()
+  {
+  	if(navigator.geolocation)
+    {
+    	navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  	else
+  	{
+  		alert("Geolocation is not supported by this browser.");
+  	}
+  }
+	function showPosition(position)
+	{
+  	//alert(httpGet('/report?lati=' + position.coords.latitude + '&long=' + position.coords.longitude));
+  	document.write(httpGet('/report?lati=' + position.coords.latitude + '&long=' + position.coords.longitude));
+  }
+  function httpGet(theUrl)
+	{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+	}
+</script>
+
+</body>
+</html>
